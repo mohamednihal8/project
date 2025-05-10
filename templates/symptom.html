@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="model-page">
+        <h1>Symptom-Based Disease Prediction</h1>
+        <div class="about-model">
+            <h2>About This Model</h2>
+            <p>This model analyzes a combination of symptoms to predict potential diseases. Enter your symptoms to receive a diagnosis along with a description and recommended precautions.</p>
+        </div>
+        <form id="symptom-form">
+            <label for="symptoms">Enter Symptoms (comma-separated, e.g., itching, fever):</label>
+            <textarea id="symptoms" name="symptoms" required></textarea>
+            <button type="submit">Diagnose</button>
+        </form>
+    </section>
+{% endblock %}
