@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="section">
+    <h1>Welcome to Predictive Diagnostics</h1>
+    <p>Our platform uses advanced machine learning to predict potential health conditions based on your medical data. Get personalized insights and take control of your health today.</p>
+    <a href="{{ url_for('predict') if session.user_id else url_for('login') }}" class="btn">Start Prediction</a>
+</div>
+{% endblock %}

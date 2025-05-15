@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+{% block content %}
+<div class="section">
+    <h1>Your Predictions</h1>
+    <table class="dashboard-table">
+        <tr>
+            <th>Predicted Disease</th>
+            <th>Confidence</th>
+            <th>Date</th>
+        </tr>
+        {% for pred in predictions %}
+        <tr>
+            <td>{{ pred.predicted_disease }}</td>
+            <td>{{ "%.2f" % (pred.confidence*100) }}%</td>
+            <td>{{ pred.prediction_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
