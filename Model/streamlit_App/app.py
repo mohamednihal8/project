@@ -7,8 +7,8 @@ import ast
 @st.cache_resource
 def load_models():
     try:
-        modelrf = joblib.load('models\rf_disease_model.pkl')
-        scalerrf = joblib.load('models\scaler.pkl')
+        modelrf = joblib.load('rf_disease_model.pkl')
+        scalerrf = joblib.load('scaler.pkl')
         return modelrf, scalerrf
     except FileNotFoundError:
         st.error("Model or scaler file not found. Please ensure 'rf_disease_model.pkl' and 'scaler.pkl' are in the same directory.")
