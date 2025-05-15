@@ -5,8 +5,8 @@ import ast
 
 # Load models
 @st.cache_resource
-modelrf = joblib.load('models\rf_disease_model.pkl')
-scalerrf = joblib.load('models\scaler.pkl')
+modelrf = joblib.load('rf_disease_model.pkl')
+scalerrf = joblib.load('scaler.pkl')
 
 # Define numerical columns
 numerical_cols = ['Age', 'BMI', 'Hemoglobin', 'WBC', 'RBC', 'Platelets', 'Glucose_Fasting', 
