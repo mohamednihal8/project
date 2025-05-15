@@ -14,7 +14,7 @@ import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 # Load the dataset
-data = pd.read_csv('medical_blood_test_dataset.csv')
+data = pd.read_csv('dataset/medical_blood_test_dataset.csv')
 
 # Drop irrelevant columns
 data = data.drop(['Patient_ID', 'Name', 'Region'], axis=1)
