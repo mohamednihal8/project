@@ -5,8 +5,14 @@ import ast
 
 # Load models
 @st.cache_resource
-modelrf = joblib.load('rf_disease_model.pkl')
-scalerrf = joblib.load('scaler.pkl')
+def load_models():
+    try:
+        modelrf = joblib.load('rf_disease_model.pkl')
+        scalerrf = joblib.load('scaler.pkl')
+        return modelrf, scalerrf
+    except FileNotFoundError:
+        st.error("Model or scaler file not found. Please ensure 'rf_disease_model.pkl' and 'scaler.pkl' are in the same directory.")
+        return None, None
 
 # Define numerical columns
 numerical_cols = ['Age', 'BMI', 'Hemoglobin', 'WBC', 'RBC', 'Platelets', 'Glucose_Fasting', 
