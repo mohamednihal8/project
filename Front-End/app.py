@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import pandas as pd
@@ -42,6 +42,16 @@ def init_db():
     conn.close()
 
 init_db()
+
+# Add cache-control headers to prevent caching of sensitive pages
+@app.after_request
+def add_no_cache_headers(response):
+    # Apply cache-control headers to all responses except static files
+    if not request.path.startswith('/static'):
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+    return response
 
 # Load and Predict functions from model.py files
 def load_and_predict_gdm(new_data):
@@ -209,7 +219,10 @@ def index():
 
 @app.route('/home')
 def home():
-    return render_template('home.html', username=session.get('username'))
+    # No session check here; home page is accessible to all users
+    is_authenticated = 'user_id' in session
+    username = session.get('username') if is_authenticated else None
+    return render_template('home.html', username=username, is_authenticated=is_authenticated)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -253,7 +266,8 @@ def signup():
 @app.route('/history')
 def history():
     if 'user_id' not in session:
-        return render_template('history.html', predictions=None)
+        flash('Please log in to view your prediction history.', 'error')
+        return redirect(url_for('login'))
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
     c.execute("SELECT * FROM predictions WHERE user_id = ?", (session['user_id'],))
@@ -297,12 +311,17 @@ def download_history_pdf():
             }
             predictions.append(prediction_dict)
         pdf_buffer = generate_history_pdf(predictions)
-        return send_file(
+        response = send_file(
             pdf_buffer,
             as_attachment=True,
             download_name='Lunara_History_Report.pdf',
             mimetype='application/pdf'
         )
+        # Ensure the PDF download response is not cached
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
     except Exception as e:
         flash(f'Failed to generate PDF: {str(e)}', 'error')
         return redirect(url_for('history'))
@@ -627,7 +646,12 @@ def logout():
     session.pop('username', None)
     session.pop('is_admin', None)
     flash('You have been logged out.', 'success')
-    return redirect(url_for('login'))
+    response = make_response(redirect(url_for('login')))
+    # Ensure the logout response is not cached
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
