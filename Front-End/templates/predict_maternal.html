@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Maternal Health Prediction{% endblock %}
+{% block hero %}
+<div class="hero">
+    <h1>Maternal Health Risk Assessment</h1>
+    <p>Enter your vital signs to evaluate pregnancy health.</p>
+</div>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Maternal Health Risk Assessment</h2>
+    <form id="maternal_form" method="POST" action="{{ url_for('predict_maternal') }}">
+        <div class="form-group tooltip">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter age" min="10" max="70" step="1" value="25" required>
+            <span class="tooltiptext">Your age in years (10-70).</span>
+        </div>
+        <div class="form-group tooltip">
+            <label for="systolic_bp">Systolic BP (mmHg)</label>
+            <input type="number" id="systolic_bp" name="systolic_bp" placeholder="Enter systolic BP" min="70" max="200" step="0.1" value="120" required>
+            <span class="tooltiptext">Systolic BP (70.0-200.0).</span>
+        </div>
+        <div class="form-group tooltip">
+            <label for="diastolic_bp">Diastolic BP (mmHg)</label>
+            <input type="number" id="diastolic_bp" name="diastolic_bp" placeholder="Enter diastolic BP" min="40" max="120" step="0.1" value="80" required>
+            <span class="tooltiptext">Diastolic BP (40.0-120.0).</span>
+        </div>
+        <div class="form-group tooltip">
+            <label for="bs">Blood Sugar (mmol/L)</label>
+            <input type="number" id="bs" name="bs" placeholder="Enter blood sugar" min="4" max="20" step="0.1" value="7" required>
+            <span class="tooltiptext">Blood sugar level (4.0-20.0).</span>
+        </div>
+        <div class="form-group tooltip">
+            <label for="heart_rate">Heart Rate (bpm)</label>
+            <input type="number" id="heart_rate" name="heart_rate" placeholder="Enter heart rate" min="40" max="120" step="1" value="70" required>
+            <span class="tooltiptext">Heart rate (40-120).</span>
+        </div>
+        <button type="submit">Get Prediction</button>
+    </form>
+</div>
+{% if result %}
+    <div class="card">
+        <h2>Your Prediction Result</h2>
+        <p><strong>Maternal Health Prediction:</strong> {{ result }}</p>
+        <p><strong>Clinical Interpretation:</strong> 
+            {{ "This indicates a high-risk pregnancy requiring immediate medical attention." if result == "high risk" else "This indicates a moderate risk level; consult a healthcare provider." if result == "mid risk" else "This indicates a low risk level, but regular check-ups are recommended." }}
+        </p>
+    </div>
+{% endif %}
+{% endblock %}
