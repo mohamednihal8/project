@@ -7,7 +7,7 @@
 body {
     font-family: 'Avenir', 'Helvetica', sans-serif;
     color: #333333;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1576091160397-5d4be1f44c69');
+    background-image: linear-gradient(rgba(247, 247, 250, 0.8), rgba(247, 247, 250, 0.8)), url('https://images.unsplash.com/photo-1576091160397-5d4be1f44c69');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: #FFFFFF;
+    background-color: #F7F7FA;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -35,7 +35,7 @@ nav {
 nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #F5A7A6;
+    color: #2A6F7F;
 }
 
 nav ul {
@@ -48,15 +48,16 @@ nav ul li a {
     color: #333333;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1.1rem;
     transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #F5A7A6;
+    color: #2A6F7F;
 }
 
 .hero {
-    background-color: #F5F5F5;
+    background-color: #E8ECEF;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -73,7 +74,7 @@ nav ul li a:hover {
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     max-width: 600px;
 }
 
@@ -84,19 +85,19 @@ main {
 }
 
 footer {
-    background-color: #F5F5F5;
+    background-color: #E8ECEF;
     padding: 1.5rem;
     text-align: center;
-    border-top: 1px solid #E5E5E5;
+    border-top: 1px solid #D3D8DB;
 }
 
 footer p {
-    font-size: 0.9rem;
-    color: #666666;
+    font-size: 1rem;
+    color: #4A4A4A;
 }
 
 footer a {
-    color: #F5A7A6;
+    color: #2A6F7F;
     text-decoration: none;
     margin: 0 0.5rem;
 }
@@ -106,7 +107,7 @@ footer a:hover {
 }
 
 .card {
-    background-color: #FFFFFF;
+    background-color: #F7F7FA;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 2rem;
@@ -114,7 +115,7 @@ footer a:hover {
 }
 
 .card h2 {
-    color: #F5A7A6;
+    color: #2A6F7F;
     margin-bottom: 1rem;
 }
 
@@ -133,15 +134,15 @@ label {
     font-weight: 500;
     margin-bottom: 0.3rem;
     color: #333333;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 input, select, textarea {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #D3D8DB;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #333333;
     background-color: #FFFFFF;
     transition: border-color 0.3s ease;
@@ -149,7 +150,7 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #F5A7A6;
+    border-color: #2A6F7F;
 }
 
 textarea {
@@ -158,18 +159,18 @@ textarea {
 }
 
 button {
-    background-color: #F5A7A6;
+    background-color: #2A6F7F;
     color: #FFFFFF;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #E59695;
+    background-color: #3B8A9B;
 }
 
 .model-card a {
@@ -178,7 +179,7 @@ button:hover {
 }
 
 .model-card h3 {
-    color: #F5A7A6;
+    color: #2A6F7F;
     margin-bottom: 0.5rem;
 }
 
@@ -187,12 +188,12 @@ button:hover {
 }
 
 .model-card .more-btn {
-    background-color: #F5A7A6;
+    background-color: #2A6F7F;
     color: #FFFFFF;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-decoration: none;
@@ -200,7 +201,7 @@ button:hover {
 }
 
 .model-card .more-btn:hover {
-    background-color: #E59695;
+    background-color: #3B8A9B;
 }
 
 .flash-message {
@@ -211,13 +212,13 @@ button:hover {
 }
 
 .flash-message.success {
-    background-color: #D4EDDA;
-    color: #155724;
+    background-color: #C3E6CB;
+    color: #1A3C34;
 }
 
 .flash-message.error {
-    background-color: #F8D7DA;
-    color: #721C24;
+    background-color: #F5C6CB;
+    color: #5A1F27;
 }
 
 .models-grid {
@@ -227,7 +228,7 @@ button:hover {
 }
 
 .model-card {
-    background-color: #FFFFFF;
+    background-color: #F7F7FA;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 2rem;
@@ -247,7 +248,7 @@ button:hover {
 }
 
 .testimonial {
-    background-color: #FFFFFF;
+    background-color: #F7F7FA;
     border-radius: 10px;
     padding: 1.5rem;
     margin: 1rem 0;
@@ -280,11 +281,11 @@ button:hover {
 .card table th, .card table td {
     padding: 0.75rem;
     text-align: left;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid #D3D8DB;
 }
 
 .card table th {
-    background-color: #F7F7F7;
+    background-color: #E8ECEF;
     color: #333333;
 }
 
@@ -308,7 +309,7 @@ button:hover {
     transform: translateY(-50%);
     opacity: 0;
     transition: opacity 0.3s;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .tooltip:hover .tooltiptext {
@@ -343,7 +344,7 @@ button:hover {
 }
 
 #login .welcome-text h1, #signup .welcome-text h1 {
-    color: #F5A7A6;
+    color: #2A6F7F;
     margin-bottom: 1rem;
 }
 
