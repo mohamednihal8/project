@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <div id="admin">
-    <h2 style="text-align: center; color: #F5A7A6;">Dashboard Overview</h2>
+    <h2 class="dashboard-title">Dashboard Overview</h2>
     <div class="dashboard">
         <div class="card">
             <h2>Prediction Statistics</h2>
@@ -41,6 +41,7 @@
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Is Admin</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,11 @@
                     <td>{{ user[2] }}</td>
                     <td>{{ user[3] }}</td>
                     <td>{{ 'Yes' if user[5] else 'No' }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_user', user_id=user[0]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete {{ user[1] }}?');">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -85,4 +91,27 @@
         </table>
     </div>
 </div>
+
+<style>
+.dashboard-title {
+    text-align: center;
+    color: #2A6F7F; /* Matches updated theme */
+    margin-bottom: 2rem;
+}
+
+.delete-btn {
+    background-color: #D9534F; /* Red for delete action */
+    color: #FFFFFF;
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #C9302C; /* Darker red on hover */
+}
+</style>
 {% endblock %}
